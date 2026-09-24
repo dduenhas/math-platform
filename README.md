@@ -1,7 +1,9 @@
 # 📐 MATHSTUDIO // GEOMETRIA VIVA
 ### Prancha Técnica de Intuição Geométrica para Álgebra Linear & Trigonometria
 
-[![Vercel Deployment](https://img.shields.io/badge/Deploy-Vercel%20Ready-black?style=for-the-badge&logo=vercel)](https://vercel.com)
+🌐 **Ambiente Oficial em Produção:** [https://matematica-tranquila.vercel.app/](https://matematica-tranquila.vercel.app/)
+
+[![Site Oficial](https://img.shields.io/badge/Produção-matematica--tranquila.vercel.app-0284c7?style=for-the-badge&logo=vercel)](https://matematica-tranquila.vercel.app/)
 [![W3C / WCAG 2.1 AAA](https://img.shields.io/badge/Accessibility-WCAG%202.1%20AAA-success?style=for-the-badge)](https://www.w3.org/WAI/standards-guidelines/wcag/)
 [![BNCC Aligned](https://img.shields.io/badge/Pedagogy-BNCC%20Ensino%20M%C3%A9dio-blue?style=for-the-badge)](http://basenacionalcomum.mec.gov.br/)
 [![Design System](https://img.shields.io/badge/Style-Swiss%20Blueprint-0284c7?style=for-the-badge)](https://fonts.google.com/specimen/Space+Grotesk)
@@ -33,14 +35,6 @@ Ao transpor o aprendizado do modelo estático de lousa para um **laboratório ci
 Inspirado pelos princípios do Construtivismo de **Seymour Papert** (*Mindstorms: Children, Computers, and Powerful Ideas*) e pelo manifesto de explicações exploráveis de **Bret Victor** (*Explorable Explanations*), o MathStudio estabelece que **o entendimento genuíno emerge da manipulação direta**:
 - Ao arrastar a ponta do vetor base $\hat{i}$ ou $\hat{j}$, a grade se deforma continuamente em tempo real a 60 quadros por segundo.
 - Ao girar o nó polar do ciclo trigonométrico, o estudante enxerga simultaneamente a projeção ortogonal do cosseno no eixo das abscissas, o feixe laser conectando essa coordenada ao pêndulo gravitacional e o gráfico temporal da onda senoidal sendo traçado no papel de engenharia.
-
-### 1.3 A Estética Swiss Architectural Blueprint
-Diferente de interfaces educacionais convencionais repletas de elementos infantis ou de templates de IA inflados de gradientes de marketing e glows supérfluos, o MathStudio adota o rigor e a sobriedade do **Design Suíço Internacional (International Typographic Style)** fundido com a precisão dos **Cianótipos Técnicos de Engenharia (Drafting Blueprints)**:
-- **Tipografia Racional**: *Space Grotesk* para diagramação geométrica, *Inter* para legibilidade de ensaios e *JetBrains Mono* para dados numéricos de precisão.
-- **Grades Milimétricas e Cotas**: Marcas de canto (`+`), réguas graduadas, vetores com setas técnicas e carimbos de prancha de desenho técnico.
-- **Dualidade Cromática Estrita (Contraste WCAG 2.1 AAA)**:
-  - **Modo Cyanotype Blueprint (Escuro)**: Fundo azul ultramarino profundo (`#051022`), eixos em ciano aeroespacial (`#38bdf8`) e destaques em carmim e âmbar dourado.
-  - **Modo Drafting Paper (Claro)**: Fundo de papel vegetal técnico milimétrico (`#f4f7fb`), linhas em azul nanquim saturado (`#0284c7`), hipotenusas em nanquim profundo (`#09182b`) e sombras ortogonais nítidas.
 
 ---
 
@@ -221,17 +215,7 @@ Os artefatos otimizados serão gerados no diretório `dist/`.
 
 ---
 
-## 🚀 6. Publicação na Vercel
-
-O projeto está totalmente configurado para publicação instantânea na **Vercel**:
-1. Conecte sua conta do GitHub à Vercel.
-2. Importe o repositório `dduenhas/math-platform`.
-3. O arquivo [`vercel.json`](./vercel.json) já contém todas as instruções de build (`npm run build`), diretório de saída (`dist`) e regras de reescrita para SPA (`index.html`).
-4. Clique em **Deploy**.
-
----
-
-## 📄 7. Autoria e Licença
+## 📄 6. Autoria e Licença
 
 Desenvolvido por **Diego Duenhas** (`dduenhas@gmail.com`).  
 Distribuído sob a licença **MIT**. Consulte o arquivo `LICENSE` para mais detalhes.
