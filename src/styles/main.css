@@ -4,31 +4,31 @@
    ============================================================ */
 
 :root,
-[data-theme="dark"] {
-  /* DARK BLUEPRINT (Cyanotype Engineering Sheet) */
-  --bp-bg: #051022;
-  --bp-bg-surface: #091936;
-  --bp-bg-elevated: #0f244b;
-  --bp-bg-hover: #163261;
-  --bp-grid-major: rgba(56, 189, 248, 0.14);
-  --bp-grid-minor: rgba(56, 189, 248, 0.035);
+[data-theme="light"] {
+  /* LIGHT BLUEPRINT / ARCHITECTURAL DRAFTING PAPER THEME (DEFAULT) */
+  --bp-bg: #f4f7fb;
+  --bp-bg-surface: #ffffff;
+  --bp-bg-elevated: #e8eff7;
+  --bp-bg-hover: #dbe7f4;
+  --bp-grid-major: rgba(14, 116, 144, 0.12);
+  --bp-grid-minor: rgba(14, 116, 144, 0.035);
 
-  --bp-border: #1a3765;
-  --bp-border-active: #38bdf8;
-  --bp-border-focus: #60a5fa;
+  --bp-border: #c0d4ec;
+  --bp-border-active: #0284c7;
+  --bp-border-focus: #2563eb;
 
-  --bp-ink: #f0f6fc;
-  --bp-ink-secondary: #93b4d7;
-  --bp-ink-muted: #5d7fa8;
-  --bp-ink-faint: #254473;
+  --bp-ink: #09182b;
+  --bp-ink-secondary: #334e68;
+  --bp-ink-muted: #627d98;
+  --bp-ink-faint: #9fb3c8;
 
-  /* Technical Drafting Pens */
-  --pen-x: #38bdf8;        /* Drafting Cyan (X / Cosine / i-hat) */
-  --pen-y: #f43f5e;        /* Drafting Coral/Rose (Y / Sine / j-hat) */
-  --pen-angle: #f59e0b;    /* Dimension Amber (Theta / Dimensions) */
-  --pen-area: #c084fc;     /* Area Violet (Determinant / Parallelogram) */
-  --pen-pass: #10b981;     /* Inspection Emerald (Success / Unit Norm) */
-  --pen-alert: #ef4444;    /* Drawing Alert Red (Singular / Collapse) */
+  /* Technical Drafting Pens (High Contrast for WCAG AAA on paper) */
+  --pen-x: #0284c7;        /* Technical Ink Blue */
+  --pen-y: #be123c;        /* Technical Ink Crimson */
+  --pen-angle: #b45309;    /* Drafting Ochre */
+  --pen-area: #6d28d9;     /* Drafting Indigo/Violet */
+  --pen-pass: #047857;     /* Drafting Forest Green */
+  --pen-alert: #b91c1c;    /* Drafting Red */
 
   /* Aliases for Full Backward-Compatibility */
   --math-x: var(--pen-x);
@@ -56,31 +56,31 @@
   --transition-tech: 0.15s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* LIGHT BLUEPRINT / ARCHITECTURAL DRAFTING PAPER THEME */
-[data-theme="light"] {
-  --bp-bg: #f4f7fb;
-  --bp-bg-surface: #ffffff;
-  --bp-bg-elevated: #e8eff7;
-  --bp-bg-hover: #dbe7f4;
-  --bp-grid-major: rgba(14, 116, 144, 0.12);
-  --bp-grid-minor: rgba(14, 116, 144, 0.035);
+/* DARK BLUEPRINT (Cyanotype Engineering Sheet Override) */
+[data-theme="dark"] {
+  --bp-bg: #051022;
+  --bp-bg-surface: #091936;
+  --bp-bg-elevated: #0f244b;
+  --bp-bg-hover: #163261;
+  --bp-grid-major: rgba(56, 189, 248, 0.14);
+  --bp-grid-minor: rgba(56, 189, 248, 0.035);
 
-  --bp-border: #c0d4ec;
-  --bp-border-active: #0284c7;
-  --bp-border-focus: #2563eb;
+  --bp-border: #1a3765;
+  --bp-border-active: #38bdf8;
+  --bp-border-focus: #60a5fa;
 
-  --bp-ink: #09182b;
-  --bp-ink-secondary: #334e68;
-  --bp-ink-muted: #627d98;
-  --bp-ink-faint: #9fb3c8;
+  --bp-ink: #f0f6fc;
+  --bp-ink-secondary: #93b4d7;
+  --bp-ink-muted: #5d7fa8;
+  --bp-ink-faint: #254473;
 
-  /* Technical Drafting Pens (High Contrast for WCAG AAA on paper) */
-  --pen-x: #0284c7;        /* Technical Ink Blue */
-  --pen-y: #be123c;        /* Technical Ink Crimson */
-  --pen-angle: #b45309;    /* Drafting Ochre */
-  --pen-area: #6d28d9;     /* Drafting Indigo/Violet */
-  --pen-pass: #047857;     /* Drafting Forest Green */
-  --pen-alert: #b91c1c;    /* Drafting Red */
+  /* Technical Drafting Pens */
+  --pen-x: #38bdf8;        /* Drafting Cyan (X / Cosine / i-hat) */
+  --pen-y: #f43f5e;        /* Drafting Coral/Rose (Y / Sine / j-hat) */
+  --pen-angle: #f59e0b;    /* Dimension Amber (Theta / Dimensions) */
+  --pen-area: #c084fc;     /* Area Violet (Determinant / Parallelogram) */
+  --pen-pass: #10b981;     /* Inspection Emerald (Success / Unit Norm) */
+  --pen-alert: #ef4444;    /* Drawing Alert Red (Singular / Collapse) */
 
   /* Aliases for Full Backward-Compatibility */
   --math-x: var(--pen-x);

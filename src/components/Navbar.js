@@ -9,8 +9,8 @@ export function createNavbar(onTabChange, initialTab = 'landing') {
 
   let activeTabId = initialTab;
 
-  // Read current theme
-  let currentTheme = localStorage.getItem('mathstudio_theme') || 'dark';
+  // Read current theme (default: light)
+  let currentTheme = localStorage.getItem('mathstudio_theme') || 'light';
   document.documentElement.setAttribute('data-theme', currentTheme);
 
   function toggleTheme() {
