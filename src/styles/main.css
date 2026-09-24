@@ -1,0 +1,1146 @@
+/* ============================================================
+   SWISS MINIMALIST + ARCHITECTURAL BLUEPRINT DESIGN SYSTEM
+   Aligns with W3C / WCAG 2.1 AAA Accessibility & Modular Grid
+   ============================================================ */
+
+:root,
+[data-theme="dark"] {
+  /* DARK BLUEPRINT (Cyanotype Engineering Sheet) */
+  --bp-bg: #051022;
+  --bp-bg-surface: #091936;
+  --bp-bg-elevated: #0f244b;
+  --bp-bg-hover: #163261;
+  --bp-grid-major: rgba(56, 189, 248, 0.14);
+  --bp-grid-minor: rgba(56, 189, 248, 0.035);
+
+  --bp-border: #1a3765;
+  --bp-border-active: #38bdf8;
+  --bp-border-focus: #60a5fa;
+
+  --bp-ink: #f0f6fc;
+  --bp-ink-secondary: #93b4d7;
+  --bp-ink-muted: #5d7fa8;
+  --bp-ink-faint: #254473;
+
+  /* Technical Drafting Pens */
+  --pen-x: #38bdf8;        /* Drafting Cyan (X / Cosine / i-hat) */
+  --pen-y: #f43f5e;        /* Drafting Coral/Rose (Y / Sine / j-hat) */
+  --pen-angle: #f59e0b;    /* Dimension Amber (Theta / Dimensions) */
+  --pen-area: #c084fc;     /* Area Violet (Determinant / Parallelogram) */
+  --pen-pass: #10b981;     /* Inspection Emerald (Success / Unit Norm) */
+  --pen-alert: #ef4444;    /* Drawing Alert Red (Singular / Collapse) */
+
+  /* Aliases for Full Backward-Compatibility */
+  --math-x: var(--pen-x);
+  --math-y: var(--pen-y);
+  --math-det: var(--pen-area);
+  --color-cos: var(--pen-x);
+  --color-sin: var(--pen-y);
+  --color-tan: var(--pen-angle);
+  --color-xp: var(--pen-pass);
+  --text-muted: var(--bp-ink-muted);
+  --text-secondary: var(--bp-ink-secondary);
+  --text-tertiary: var(--bp-ink-muted);
+  --border-subtle: var(--bp-border);
+
+  /* Typography */
+  --font-display: 'Space Grotesk', -apple-system, sans-serif;
+  --font-sans: 'Inter', -apple-system, sans-serif;
+  --font-tech: 'JetBrains Mono', monospace;
+
+  --radius-sharp: 0px;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+
+  --transition-tech: 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* LIGHT BLUEPRINT / ARCHITECTURAL DRAFTING PAPER THEME */
+[data-theme="light"] {
+  --bp-bg: #f4f7fb;
+  --bp-bg-surface: #ffffff;
+  --bp-bg-elevated: #e8eff7;
+  --bp-bg-hover: #dbe7f4;
+  --bp-grid-major: rgba(14, 116, 144, 0.12);
+  --bp-grid-minor: rgba(14, 116, 144, 0.035);
+
+  --bp-border: #c0d4ec;
+  --bp-border-active: #0284c7;
+  --bp-border-focus: #2563eb;
+
+  --bp-ink: #09182b;
+  --bp-ink-secondary: #334e68;
+  --bp-ink-muted: #627d98;
+  --bp-ink-faint: #9fb3c8;
+
+  /* Technical Drafting Pens (High Contrast for WCAG AAA on paper) */
+  --pen-x: #0284c7;        /* Technical Ink Blue */
+  --pen-y: #be123c;        /* Technical Ink Crimson */
+  --pen-angle: #b45309;    /* Drafting Ochre */
+  --pen-area: #6d28d9;     /* Drafting Indigo/Violet */
+  --pen-pass: #047857;     /* Drafting Forest Green */
+  --pen-alert: #b91c1c;    /* Drafting Red */
+
+  /* Aliases for Full Backward-Compatibility */
+  --math-x: var(--pen-x);
+  --math-y: var(--pen-y);
+  --math-det: var(--pen-area);
+  --color-cos: var(--pen-x);
+  --color-sin: var(--pen-y);
+  --color-tan: var(--pen-angle);
+  --color-xp: var(--pen-pass);
+  --text-muted: var(--bp-ink-muted);
+  --text-secondary: var(--bp-ink-secondary);
+  --text-tertiary: var(--bp-ink-muted);
+  --border-subtle: var(--bp-border);
+}
+
+/* Base Styles & Blueprint Millimeter Grid */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bp-bg);
+  background-image: 
+    linear-gradient(to right, var(--bp-grid-major) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--bp-grid-major) 1px, transparent 1px),
+    linear-gradient(to right, var(--bp-grid-minor) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--bp-grid-minor) 1px, transparent 1px);
+  background-size: 80px 80px, 80px 80px, 16px 16px, 16px 16px;
+  background-position: -1px -1px;
+  color: var(--bp-ink);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Focus States (Accessibility W3C / WCAG 2.1) */
+button:focus-visible, input:focus-visible, a:focus-visible, select:focus-visible {
+  outline: 2px solid var(--bp-border-focus);
+  outline-offset: 2px;
+}
+
+/* ============================================================
+   ARCHITECTURAL TOPBAR (SWISS REGISTRATION STYLE)
+   ============================================================ */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bp-bg);
+  border-bottom: 1px solid var(--bp-border);
+  padding: 0.5rem 1rem;
+  backdrop-filter: blur(8px);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.navbar-container {
+  max-width: 1600px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  user-select: none;
+}
+
+.brand-blueprint-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--bp-border);
+  background: var(--bp-bg-surface);
+  font-family: var(--font-tech);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--pen-x);
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--bp-ink);
+  line-height: 1.1;
+}
+
+.brand-spec {
+  font-family: var(--font-tech);
+  font-size: 0.65rem;
+  color: var(--bp-ink-muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Swiss Segmented Navigation */
+.nav-tabs {
+  display: flex;
+  align-items: center;
+  background: var(--bp-bg-surface);
+  border: 1px solid var(--bp-border);
+  padding: 2px;
+  gap: 1px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+}
+
+.nav-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.75rem;
+  background: transparent;
+  color: var(--bp-ink-secondary);
+  border: none;
+  font-family: var(--font-tech);
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--transition-tech);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.nav-tab-btn:hover {
+  color: var(--bp-ink);
+  background: var(--bp-bg-hover);
+}
+
+.nav-tab-btn.active {
+  background: var(--bp-bg-elevated);
+  color: var(--pen-x);
+  font-weight: 700;
+  box-shadow: inset 0 -2px 0 var(--pen-x);
+}
+
+/* Controls Header (Theme Toggle, BNCC info, Sound) */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.tech-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  height: 32px;
+  padding: 0 0.65rem;
+  background: var(--bp-bg-surface);
+  border: 1px solid var(--bp-border);
+  color: var(--bp-ink-secondary);
+  font-family: var(--font-tech);
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-tech);
+  white-space: nowrap;
+  border-radius: 0;
+}
+
+.tech-btn:hover {
+  background: var(--bp-bg-elevated);
+  color: var(--bp-ink);
+  border-color: var(--bp-border-active);
+}
+
+.tech-btn.active {
+  color: var(--pen-x);
+  border-color: var(--pen-x);
+}
+
+/* ============================================================
+   MAIN CONTENT CONTAINER
+   ============================================================ */
+.main-content {
+  flex: 1;
+  max-width: 1600px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+}
+
+/* Section Header (Swiss Typographic Grid) */
+.section-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--bp-border);
+  padding-bottom: 0.85rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.section-title-wrap {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.section-icon-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--bp-border);
+  background: var(--bp-bg-surface);
+  font-family: var(--font-tech);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--pen-x);
+  flex-shrink: 0;
+}
+
+.section-meta-tag {
+  font-family: var(--font-tech);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--pen-x);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2.5vw, 1.85rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--bp-ink);
+  line-height: 1.15;
+}
+
+.section-subtitle {
+  font-size: 0.88rem;
+  color: var(--bp-ink-secondary);
+  margin-top: 0.3rem;
+  max-width: 820px;
+}
+
+/* ============================================================
+   BLUEPRINT SPLIT-SCREEN WORKBENCH
+   ============================================================ */
+.sandbox-container {
+  display: grid;
+  grid-template-columns: 1fr 390px;
+  gap: 1.25rem;
+  min-height: 560px;
+}
+
+@media (max-width: 1100px) {
+  .sandbox-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Architectural Canvas Frame with Registration Corners */
+.sandbox-canvas-panel {
+  position: relative;
+  background: var(--bp-bg-surface);
+  border: 1px solid var(--bp-border);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Precision Corner Marks (+) */
+.sandbox-canvas-panel::before,
+.sandbox-canvas-panel::after,
+.control-card::before,
+.control-card::after {
+  content: '+';
+  position: absolute;
+  font-family: var(--font-tech);
+  font-size: 0.75rem;
+  color: var(--bp-border);
+  pointer-events: none;
+  z-index: 15;
+}
+
+.sandbox-canvas-panel::before { top: 4px; left: 6px; }
+.sandbox-canvas-panel::after { bottom: 4px; right: 6px; }
+
+/* Floating Blueprint Header Toolbar */
+.sandbox-toolbar {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  right: 0.75rem;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  pointer-events: none;
+  flex-wrap: wrap;
+}
+
+.sandbox-toolbar > * {
+  pointer-events: auto;
+}
+
+.canvas-badge-group {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  background: var(--bp-bg);
+  border: 1px solid var(--bp-border);
+  padding: 0.35rem 0.75rem;
+  font-family: var(--font-tech);
+  font-size: 0.75rem;
+  font-weight: 500;
+  flex-wrap: wrap;
+}
+
+/* Controls Panel */
+.sandbox-controls-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.control-card {
+  position: relative;
+  background: var(--bp-bg-surface);
+  border: 1px solid var(--bp-border);
+  padding: 1.15rem;
+}
+
+.control-card::before { top: 3px; left: 4px; }
+.control-card::after { bottom: 3px; right: 4px; }
+
+.control-title {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--bp-ink);
+  border-bottom: 1px solid var(--bp-border);
+  padding-bottom: 0.45rem;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.control-group {
+  margin-bottom: 0.85rem;
+}
+
+.control-group:last-child {
+  margin-bottom: 0;
+}
+
+.control-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.78rem;
+  font-family: var(--font-tech);
+  margin-bottom: 0.35rem;
+  color: var(--bp-ink-secondary);
+}
+
+.control-value {
+  font-family: var(--font-tech);
+  font-size: 0.8rem;
+  color: var(--bp-ink);
+  background: var(--bp-bg);
+  padding: 0.1rem 0.4rem;
+  border: 1px solid var(--bp-border);
+}
+
+/* Technical Range Sliders (No IA gradients, pure drafting rule) */
+input[type=range] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  background: var(--bp-border);
+  outline: none;
+  border-radius: 0;
+  margin: 0.4rem 0;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  background: var(--bp-ink);
+  border: 1px solid var(--bp-border);
+  cursor: pointer;
+  border-radius: 0;
+}
+
+input[type=range].slider-cyan::-webkit-slider-thumb {
+  background: var(--pen-x);
+}
+
+input[type=range].slider-magenta::-webkit-slider-thumb {
+  background: var(--pen-y);
+}
+
+input[type=range].slider-gold::-webkit-slider-thumb {
+  background: var(--pen-angle);
+}
+
+/* Matrix Bracket View */
+.matrix-bracket-view {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  padding: 0.85rem;
+  background: var(--bp-bg);
+  border: 1px solid var(--bp-border);
+  margin-bottom: 0.75rem;
+}
+
+.matrix-grid-input {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  padding: 0.25rem 0.65rem;
+  position: relative;
+}
+
+.matrix-grid-input::before,
+.matrix-grid-input::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  bottom: -2px;
+  width: 6px;
+  border: 1.5px solid var(--bp-ink-secondary);
+}
+
+.matrix-grid-input::before {
+  left: 0;
+  border-right: none;
+}
+
+.matrix-grid-input::after {
+  right: 0;
+  border-left: none;
+}
+
+.matrix-cell-input {
+  width: 58px;
+  background: var(--bp-bg-surface);
+  border: 1px solid var(--bp-border);
+  color: var(--bp-ink);
+  font-family: var(--font-tech);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-align: center;
+  padding: 0.35rem 0.2rem;
+  border-radius: 0;
+}
+
+.matrix-cell-input:focus {
+  outline: none;
+  border-color: var(--pen-x);
+}
+
+.matrix-cell-input.col-i {
+  color: var(--pen-x);
+  border-color: var(--pen-x);
+}
+
+.matrix-cell-input.col-j {
+  color: var(--pen-y);
+  border-color: var(--pen-y);
+}
+
+/* Technical Preset Buttons */
+.preset-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.35rem;
+}
+
+.preset-btn {
+  padding: 0.45rem 0.6rem;
+  background: var(--bp-bg);
+  border: 1px solid var(--bp-border);
+  color: var(--bp-ink-secondary);
+  font-family: var(--font-tech);
+  font-size: 0.72rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  transition: all var(--transition-tech);
+  border-radius: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.preset-btn:hover {
+  background: var(--bp-bg-hover);
+  color: var(--bp-ink);
+  border-color: var(--bp-border-active);
+}
+
+.preset-btn.active {
+  background: var(--bp-bg-elevated);
+  border-color: var(--pen-x);
+  color: var(--pen-x);
+  font-weight: 700;
+}
+
+/* Telemetry Readout */
+.telemetry-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.75rem;
+  background: var(--bp-bg);
+  border: 1px solid var(--bp-border);
+  font-family: var(--font-tech);
+  font-size: 0.78rem;
+  margin-bottom: 0.4rem;
+}
+
+.telemetry-val {
+  font-weight: 700;
+}
+
+/* Determinant Alert */
+.det-status {
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--bp-border);
+  font-family: var(--font-tech);
+  font-size: 0.75rem;
+  line-height: 1.4;
+  margin-top: 0.5rem;
+  background: var(--bp-bg);
+}
+
+.det-status.normal {
+  border-left: 3px solid var(--pen-area);
+  color: var(--bp-ink);
+}
+
+.det-status.collapsed {
+  border-left: 3px solid var(--pen-alert);
+  color: var(--pen-alert);
+}
+
+.det-status.flipped {
+  border-left: 3px solid var(--pen-angle);
+  color: var(--pen-angle);
+}
+
+/* Technical Buttons (Swiss Architectural) */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.25rem;
+  background: var(--pen-x);
+  color: #051022;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.85rem;
+  border: 1px solid var(--pen-x);
+  cursor: pointer;
+  transition: all var(--transition-tech);
+  border-radius: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+[data-theme="light"] .btn-primary {
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  filter: brightness(1.12);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.25rem;
+  background: var(--bp-bg);
+  color: var(--bp-ink);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.85rem;
+  border: 1px solid var(--bp-border);
+  cursor: pointer;
+  transition: all var(--transition-tech);
+  border-radius: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.btn-secondary:hover {
+  background: var(--bp-bg-hover);
+  border-color: var(--bp-border-active);
+}
+
+.btn-accent {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.25rem;
+  background: var(--pen-y);
+  color: #ffffff;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.85rem;
+  border: 1px solid var(--pen-y);
+  cursor: pointer;
+  transition: all var(--transition-tech);
+  border-radius: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.btn-accent:hover {
+  filter: brightness(1.12);
+}
+
+/* Subtabs (Technical Division Tabs) */
+.subtabs {
+  display: flex;
+  gap: 2px;
+  border-bottom: 1px solid var(--bp-border);
+  margin-bottom: 1.5rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.subtab-btn {
+  background: transparent;
+  border: none;
+  color: var(--bp-ink-secondary);
+  font-family: var(--font-tech);
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 0.55rem 0.85rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--transition-tech);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.subtab-btn:hover {
+  color: var(--bp-ink);
+  background: var(--bp-bg-surface);
+}
+
+.subtab-btn.active {
+  color: var(--pen-x);
+  background: var(--bp-bg-surface);
+  font-weight: 700;
+  box-shadow: inset 0 -2px 0 var(--pen-x);
+}
+
+/* Explainer Lesson Layout */
+.lesson-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.step-indicator-bar {
+  display: flex;
+  gap: 0.35rem;
+  margin-bottom: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.step-pill {
+  padding: 0.35rem 0.75rem;
+  border: 1px solid var(--bp-border);
+  background: var(--bp-bg);
+  color: var(--bp-ink-secondary);
+  font-family: var(--font-tech);
+  font-size: 0.75rem;
+  cursor: pointer;
+  border-radius: 0;
+}
+
+.step-pill.active {
+  border-color: var(--pen-x);
+  color: var(--pen-x);
+  background: var(--bp-bg-surface);
+  font-weight: 700;
+}
+
+.lesson-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--bp-ink);
+  line-height: 1.15;
+}
+
+.lesson-subtitle {
+  font-size: 0.95rem;
+  color: var(--bp-ink-secondary);
+  margin-top: 0.35rem;
+}
+
+.lesson-body-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 1024px) {
+  .lesson-body-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.explainer-text-card {
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: var(--bp-ink-secondary);
+}
+
+.benefit-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin: 1rem 0;
+}
+
+.benefit-list li::before {
+  content: '▸';
+  color: var(--pen-x);
+  margin-right: 0.5rem;
+  font-weight: 700;
+}
+
+.highlight-callout {
+  padding: 0.85rem 1.15rem;
+  margin: 1rem 0;
+  border-left: 3px solid;
+  background: var(--bp-bg-surface);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.highlight-callout.cyan {
+  border-color: var(--pen-x);
+  color: var(--bp-ink);
+}
+
+.highlight-callout.gold {
+  border-color: var(--pen-angle);
+  color: var(--bp-ink);
+}
+
+.formula-box {
+  background: var(--bp-bg);
+  border: 1px solid var(--bp-border);
+  padding: 0.85rem 1rem;
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.dual-concept-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+  margin: 1rem 0;
+}
+
+@media (max-width: 600px) {
+  .dual-concept-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.concept-card {
+  background: var(--bp-bg-surface);
+  border: 1px solid var(--bp-border);
+  padding: 0.95rem;
+}
+
+.concept-card.cyan-border {
+  border-top: 2px solid var(--pen-x);
+}
+
+.concept-card.magenta-border {
+  border-top: 2px solid var(--pen-y);
+}
+
+.concept-badge {
+  font-family: var(--font-tech);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 0.35rem;
+  display: inline-block;
+}
+
+.concept-badge.cyan { color: var(--pen-x); }
+.concept-badge.magenta { color: var(--pen-y); }
+
+.lesson-nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--bp-border);
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.interactive-preview-canvas-card {
+  background: var(--bp-bg-surface);
+  border: 1px solid var(--bp-border);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.canvas-preview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-tech);
+  font-size: 0.75rem;
+  margin-bottom: 0.75rem;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.canvas-wrapper {
+  background: var(--bp-bg);
+  border: 1px solid var(--bp-border);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.canvas-wrapper canvas {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ============================================================
+   ARCHITECTURAL DRAWING TITLE BLOCK (CARIMBO DE PRANCHA)
+   ============================================================ */
+.drawing-title-block {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  border: 1px solid var(--bp-border);
+  background: var(--bp-bg-surface);
+  font-family: var(--font-tech);
+  font-size: 0.72rem;
+  margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  .drawing-title-block {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.title-block-cell {
+  padding: 0.6rem 0.85rem;
+  border-right: 1px solid var(--bp-border);
+  border-bottom: 1px solid var(--bp-border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.title-block-cell:last-child {
+  border-right: none;
+}
+
+.title-block-label {
+  font-size: 0.62rem;
+  color: var(--bp-ink-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.title-block-val {
+  font-weight: 700;
+  color: var(--bp-ink);
+}
+
+/* ============================================================
+   BNCC ACCORDION & PEDAGOGICAL CARDS
+   ============================================================ */
+.bncc-card {
+  background: var(--bp-bg-surface);
+  border: 1px solid var(--bp-border);
+  padding: 1.25rem;
+  transition: all var(--transition-tech);
+}
+
+.bncc-card:hover {
+  border-color: var(--pen-x);
+}
+
+.bncc-code {
+  font-family: var(--font-tech);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--pen-x);
+  padding: 0.2rem 0.5rem;
+  background: var(--bp-bg);
+  border: 1px solid var(--bp-border);
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+.bncc-desc {
+  font-size: 0.88rem;
+  color: var(--bp-ink-secondary);
+  line-height: 1.6;
+}
+
+/* ============================================================
+   RESPONSIVE LANDING PAGE STYLES
+   ============================================================ */
+.landing-hero-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 2.5rem;
+  align-items: center;
+  margin-bottom: 4rem;
+}
+
+@media (max-width: 960px) {
+  .landing-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+.landing-hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: var(--bp-ink);
+  line-height: 1.05;
+  margin-bottom: 1.25rem;
+}
+
+.landing-pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+@media (max-width: 680px) {
+  .landing-pillars-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.landing-comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .landing-comparison-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Modal Backdrops & Dialogs */
+.blueprint-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 16, 34, 0.85);
+  backdrop-filter: blur(6px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+[data-theme="light"] .blueprint-modal-backdrop {
+  background: rgba(15, 23, 42, 0.6);
+}
+
+.blueprint-modal {
+  max-width: 760px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: var(--bp-bg-surface);
+  border: 1px solid var(--bp-border);
+  padding: 2rem;
+  position: relative;
+}
+
+@media (max-width: 600px) {
+  .blueprint-modal {
+    padding: 1.25rem;
+  }
+}
